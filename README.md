@@ -19,7 +19,7 @@ To test the package you need to locally deploy the docusaurus project version 2.
 
 -  Initialize the docusaurus project
     ```sh
-    npx create-docusaurus@latest my-website classic --typescript
+    npx create-docusaurus@2.4.3 my-website classic --typescript
     ```
 -  Install our custom package 
      ```sh
