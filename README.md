@@ -46,7 +46,8 @@ Customize your widget's config (Example shown below):
 //..
     customFields: {
         inkeepConfig: {
-            stylesheetUrls: [''], // optional for search bar
+            // stylesheetUrls: ['/path/to/stylesheets'], // optional for search bar
+            // stylesheets: [<link key="my-stylesheet-key" rel="stylesheet" href="path-to-my-stylesheet.css" /> ], // optional for search bar
             baseSettings: {
                 apiKey: "apiKey",
                 integrationId: "integrationId",

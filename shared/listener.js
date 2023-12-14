@@ -1,4 +1,4 @@
-function listenerFunction (inkeepConfig, componentType, stylesheetUrls) {
+function listenerFunction (inkeepConfig, componentType, stylesheetUrls, stylesheets) {
     if (!inkeepConfig) {
       throw new Error("Docusaurus config lacks inkeep config");
     }
@@ -23,6 +23,7 @@ function listenerFunction (inkeepConfig, componentType, stylesheetUrls) {
         targetElement: inkeepWidgetContainer,
         properties: {
           stylesheetUrls,
+          stylesheets,
           baseSettings: {
             ...inkeepConfig.baseSettings,
             theme: {
