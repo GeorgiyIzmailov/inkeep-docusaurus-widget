@@ -21,7 +21,9 @@ module.exports = function (context) {
             const inkeepConfig = ${JSON.stringify(
               context.siteConfig.customFields.inkeepConfig
             )};
-            (${listenerFunction.toString()})(inkeepConfig, 'SearchBar', inkeepConfig?.stylesheetUrls)
+            const { stylesheetUrls, stylesheets } = inkeepConfig;
+
+            (${listenerFunction.toString()})(inkeepConfig, 'SearchBar', stylesheetUrls, stylesheets)
           </script>\n `,
         ],
       };
