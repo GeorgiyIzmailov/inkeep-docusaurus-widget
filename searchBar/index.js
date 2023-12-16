@@ -17,6 +17,7 @@ module.exports = function (context) {
         ],
         postBodyTags: [
           `
+          <div id='inkeepSearchBar'></div>
           <script defer>    
             const inkeepConfig = ${JSON.stringify(
               context.siteConfig.customFields.inkeepConfig
@@ -24,7 +25,24 @@ module.exports = function (context) {
             const { stylesheetUrls, stylesheets } = inkeepConfig;
 
             (${listenerFunction.toString()})(inkeepConfig, 'SearchBar', stylesheetUrls, stylesheets)
-          </script>\n `,
+          </script>\n
+          <script>
+            (() => {
+              const inkeepWidgetContainer = document.getElementById("inkeepSearchBar");
+
+              const observer = new MutationObserver((mutationsList) => { 
+                const inkeep = document.getElementById('inkeep');
+               
+                if(inkeep) {
+                  inkeep.appendChild(inkeepWidgetContainer)
+                }    
+            
+              });
+          
+              observer.observe(document.documentElement, { attributes: true });
+            })()
+          </script>
+          `,
         ],
       };
     },

@@ -14,9 +14,7 @@ function listenerFunction (inkeepConfig, componentType, stylesheetUrls, styleshe
       }
 
       const currentTheme = document.documentElement.dataset.theme;
-      const renderChatButton = !inkeepWidget && inkeepWidgetContainer;
-      const renderSearchBar = !inkeepWidgetContainer.childNodes.length || (inkeepWidgetContainer && !inkeepWidget);
-      const isRender = isChatButtonType ? renderChatButton : renderSearchBar;
+      const isRender = !inkeepWidget && inkeepWidgetContainer;
 
       const config = {
         componentType,
