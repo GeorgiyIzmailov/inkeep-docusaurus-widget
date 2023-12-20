@@ -1,6 +1,14 @@
 const { listenerFunction } = require("../shared/listener");
+const { DEFAULT_WIDGET_VERSION } = require("../shared/consts");
 
 module.exports = function (context) {
+  const {
+    siteConfig: {
+      customFields: { inkeepConfig },
+    },
+  } = context;
+  const { version = DEFAULT_WIDGET_VERSION } = inkeepConfig;
+
   return {
     name: "inkeep-chat-button",
     injectHtmlTags: () => {
@@ -9,7 +17,7 @@ module.exports = function (context) {
           {
             tagName: "script",
             attributes: {
-              src: "https://unpkg.com/@inkeep/widgets-embed@latest/dist/embed.js",
+              src: `https://unpkg.com/@inkeep/widgets-embed@${version}/dist/embed.js`,
               type: "module",
               defer: true,
             },
@@ -18,10 +26,8 @@ module.exports = function (context) {
         postBodyTags: [
           `
         <script defer>    
-          const inkeepConfig = ${JSON.stringify(
-            context.siteConfig.customFields.inkeepConfig
-          )};
-          (${listenerFunction.toString()})(inkeepConfig, 'ChatButton')
+          const inkeepConfigChatButton = ${JSON.stringify(inkeepConfig)};
+          (${listenerFunction.toString()})(inkeepConfigChatButton, 'ChatButton')
         </script>\n
         <div id='inkeepChatButton'></div>`,
         ],

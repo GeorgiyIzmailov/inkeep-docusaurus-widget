@@ -1,7 +1,7 @@
 {
     "name": "@inkeep/docusaurus",
     "license": "MIT",
-    "version": "0.0.1",
+    "version": "0.2.246.1",
     "author": "",
     "main": "dist/index.js",
     "module": "dist/index.mjs",

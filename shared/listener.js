@@ -6,8 +6,13 @@ function listenerFunction (inkeepConfig, componentType, stylesheetUrls, styleshe
     let inkeepWidget = null;
     const isChatButtonType = componentType === 'ChatButton';
 
+    const inkeepSearchBar = document.getElementById('inkeepSearchBar');
+    const inkeepChatButton = document.getElementById('inkeepChatButton');
+
+    const shortcutEnable = inkeepSearchBar && inkeepChatButton
+
     const observer = new MutationObserver((mutationsList) => { 
-      const inkeepWidgetContainer = document.getElementById(!isChatButtonType ? "inkeepSearchBar" : 'inkeepChatButton');
+      const inkeepWidgetContainer = document.getElementById(!isChatButtonType ? 'inkeepSearchBar' : 'inkeepChatButton');
       
       if(isChatButtonType) {
         inkeepWidgetContainer.style.position = 'absolute';
@@ -30,7 +35,10 @@ function listenerFunction (inkeepConfig, componentType, stylesheetUrls, styleshe
               },
             },
           },
-          modalSettings: inkeepConfig.modalSettings,
+          modalSettings: {
+            ...inkeepConfig.modalSettings,
+            areOpenHotKeysDisabled: inkeepConfig.switchShortcutTarget ? !shortcutEnable : shortcutEnable || inkeepConfig.modalSettings.areOpenHotKeysDisabled,
+          },
           searchSettings: inkeepConfig.searchSettings,
           aiChatSettings: inkeepConfig.aiChatSettings,
         },
