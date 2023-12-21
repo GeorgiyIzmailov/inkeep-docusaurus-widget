@@ -1,6 +1,14 @@
 const { listenerFunction } = require("../shared/listener");
+const { DEFAULT_WIDGET_VERSION } = require("../shared/consts");
 
 module.exports = function (context) {
+  const {
+    siteConfig: {
+      customFields: { inkeepConfig },
+    },
+  } = context;
+  const { version = DEFAULT_WIDGET_VERSION } = inkeepConfig;
+
   return {
     name: "inkeep-search-bar",
     injectHtmlTags: () => {
@@ -9,7 +17,7 @@ module.exports = function (context) {
           {
             tagName: "script",
             attributes: {
-              src: "https://unpkg.com/@inkeep/widgets-embed@latest/dist/embed.js",
+              src: `https://unpkg.com/@inkeep/widgets-embed@${version}/dist/embed.js`,
               type: "module",
               defer: true,
             },
@@ -18,13 +26,11 @@ module.exports = function (context) {
         postBodyTags: [
           `
           <div id='inkeepSearchBar'></div>
-          <script defer>    
-            const inkeepConfig = ${JSON.stringify(
-              context.siteConfig.customFields.inkeepConfig
-            )};
-            const { stylesheetUrls, stylesheets } = inkeepConfig;
+          <script defer>
+            const inkeepConfigSearchBar = ${JSON.stringify(inkeepConfig)};
+            const { stylesheetUrls, stylesheets } = inkeepConfigSearchBar;
 
-            (${listenerFunction.toString()})(inkeepConfig, 'SearchBar', stylesheetUrls, stylesheets)
+            (${listenerFunction.toString()})(inkeepConfigSearchBar, 'SearchBar', stylesheetUrls, stylesheets)
           </script>\n
           <script>
             (() => {
