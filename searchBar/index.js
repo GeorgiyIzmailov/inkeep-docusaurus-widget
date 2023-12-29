@@ -30,7 +30,7 @@ module.exports = function (context) {
             const inkeepConfigSearchBar = ${JSON.stringify(inkeepConfig)};
             const { stylesheetUrls, stylesheets } = inkeepConfigSearchBar;
 
-            (${listenerFunction.toString()})(inkeepConfigSearchBar, 'SearchBar', stylesheetUrls, stylesheets)
+            (${listenerFunction.toString()})({inkeepConfig: inkeepConfigSearchBar, componentType: 'SearchBar', stylesheetUrls, stylesheets})
           </script>\n
           <script>
             (() => {

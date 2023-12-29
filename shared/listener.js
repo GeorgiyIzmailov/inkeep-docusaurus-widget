@@ -1,4 +1,4 @@
-function listenerFunction (inkeepConfig, componentType, stylesheetUrls, stylesheets) {
+function listenerFunction ({inkeepConfig, componentType, chatButtonType, stylesheetUrls, stylesheets}) {
     if (!inkeepConfig) {
       throw new Error("Docusaurus config lacks inkeep config");
     }
@@ -27,6 +27,7 @@ function listenerFunction (inkeepConfig, componentType, stylesheetUrls, styleshe
         properties: {
           stylesheetUrls,
           stylesheets,
+          chatButtonType,
           baseSettings: {
             ...inkeepConfig.baseSettings,
             theme: {
