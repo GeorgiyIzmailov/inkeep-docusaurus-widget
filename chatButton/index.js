@@ -27,7 +27,8 @@ module.exports = function (context) {
           `
         <script defer>    
           const inkeepConfigChatButton = ${JSON.stringify(inkeepConfig)};
-          (${listenerFunction.toString()})(inkeepConfigChatButton, 'ChatButton')
+          const { chatButtonType } = inkeepConfigChatButton;
+          (${listenerFunction.toString()})({inkeepConfig: inkeepConfigChatButton, componentType: 'ChatButton', chatButtonType})
         </script>\n
         <div id='inkeepChatButton'></div>`,
         ],
